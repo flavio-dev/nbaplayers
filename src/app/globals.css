@@ -1,7 +1,7 @@
 :root {
   --background-dark: #171717;
-  --foreground-dark: #eaeaea;
-  --background-light: #eaeaea;
+  --foreground-dark: #fcfcfc;
+  --background-light: #fcfcfc;
   --foreground-light: #171717;
   --max-screen-width: 1240px;
   --screen-inner-width: 95%;
@@ -50,6 +50,15 @@ td {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 .default-wrapper-width {
@@ -57,4 +66,14 @@ a {
   margin-right: auto;
   max-width: var(--max-screen-width);
   width: var(--screen-inner-width);
+}
+
+.dark {
+  background-color: var(--background-dark);
+  color: var(--foreground-dark);
+}
+
+.light {
+  background-color: var(--background-light);
+  color: var(--foreground-light);
 }

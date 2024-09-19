@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export const ThemeContext = createContext({
   theme: "light",
-  setTheme: () => {},
+  setTheme: (str) => {},
 });
 
 const ThemeProvider = ({ children }) => {
@@ -11,7 +11,7 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
+      <div className={theme}>{children}</div>
     </ThemeContext.Provider>
   );
 };
