@@ -1,0 +1,9 @@
+.pageLight {
+  color: var(--foreground-light);
+  background-color: var(--background-light);
+}
+
+.pageDark {
+  color: var(--foreground-dark);
+  background-color: var(--background-dark);
+}

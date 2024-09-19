@@ -1,0 +1,21 @@
+.header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerButton {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.headerButtonDark {
+  background-color: var(--background-dark);
+  color: var(--foreground-dark);
+}
+.headerButtonLight {
+  background-color: var(--background-light);
+  color: var(--foreground-light);
+}
