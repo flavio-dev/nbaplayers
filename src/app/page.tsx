@@ -2,6 +2,7 @@ import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 import ThemeProvider from "@/contexts/ThemContext";
 import SearchBar from "@/components/SearchBar";
+import Results from "@/components/Results";
 import SearchBarProvider from "@/contexts/SearchBarContext";
 
 export default function Home() {
@@ -11,8 +12,7 @@ export default function Home() {
       <SearchBarProvider>
         <SearchBar />
         <main className={`default-wrapper-width ${styles.main}`}>
-          <div>🏀</div>
-          <div>You have no cards to show</div>
+          <Results />
         </main>
       </SearchBarProvider>
       <footer className={styles.footer}></footer>

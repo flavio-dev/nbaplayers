@@ -2,14 +2,14 @@
 import { createContext, useState } from "react";
 
 export const SearchBarContext = createContext({
-  metricSystem: "metric",
+  metricSystem: "",
   setMetricSystem: (str: string) => {},
   players: [],
   setPlayers: (arr) => [],
 });
 
 const SearchBarProvider = ({ children }) => {
-  const [metricSystem, setMetricSystem] = useState("metric");
+  const [metricSystem, setMetricSystem] = useState("imperial");
   const [players, setPlayers] = useState([]);
 
   return (
