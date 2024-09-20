@@ -1,10 +1,9 @@
 "use client";
-import { useContext } from "react";
-import { ThemeContext } from "@/contexts/ThemContext";
+import { useThemeContext } from "@/contexts/ThemContext";
 import styles from "./Header.module.css";
 
 export const Header = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useThemeContext();
 
   const toggleTheme = () => {
     if (theme === "light") {

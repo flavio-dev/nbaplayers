@@ -1,12 +1,14 @@
 "use client";
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useThrottle } from "@custom-react-hooks/use-throttle";
 import styles from "./SearchBar.module.css";
 import { SearchBarContext } from "@/contexts/SearchBarContext";
+import { useThemeContext } from "@/contexts/ThemContext";
 
 export const SearchBar = () => {
   const { metricSystem, setMetricSystem, players, setPlayers } =
     useContext(SearchBarContext);
+  const { theme } = useThemeContext();
   const [searchResults, setSearchResults] = useState([]);
   const [inputText, setInputText] = useState("");
   const throttledText = useThrottle(inputText, 500);

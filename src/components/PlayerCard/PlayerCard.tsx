@@ -1,8 +1,6 @@
 import styles from "./Results.module.css";
 
 export const PlayerCard = ({ player }) => {
-  console.log("jciadjcosdjcjsdiojcio");
-
   return (
     <div>
       <div>
