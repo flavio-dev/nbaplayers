@@ -9,13 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
+    "@custom-react-hooks/use-throttle": "^1.5.1",
     "next": "14.2.12",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

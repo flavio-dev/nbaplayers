@@ -1,6 +1,6 @@
 "use client";
-import { useContext, useState, useRef } from "react";
-import { throttle } from "lodash";
+import { useContext, useState, useRef, useEffect } from "react";
+import { useThrottle } from "@custom-react-hooks/use-throttle";
 import styles from "./SearchBar.module.css";
 import { SearchBarContext } from "@/contexts/SearchBarContext";
 
@@ -9,46 +9,37 @@ export const SearchBar = () => {
     useContext(SearchBarContext);
   const [searchResults, setSearchResults] = useState([]);
   const [inputText, setInputText] = useState("");
+  const throttledText = useThrottle(inputText, 500);
 
-  const fetchPlayers = async (text: string) => {
-    try {
-      const res = await fetch(
-        "https://api.balldontlie.io/v1/players?search=" + text,
-        {
-          headers: {
-            Authorization: "a42b6000-feea-4384-ac80-69d07f6dd066",
-          },
-        }
-      );
+  useEffect(() => {
+    const fetchPlayers = async (text: string) => {
+      try {
+        const res = await fetch(
+          "https://api.balldontlie.io/v1/players?search=" + text,
+          {
+            headers: {
+              Authorization: "a42b6000-feea-4384-ac80-69d07f6dd066",
+            },
+          }
+        );
 
-      const { data } = await res.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-      return [];
+        const { data: players } = await res.json();
+
+        setSearchResults(players);
+      } catch (err) {
+        console.log(err);
+        return [];
+      }
+    };
+
+    if (throttledText) {
+      fetchPlayers(throttledText);
     }
+  }, [throttledText, setSearchResults]);
+
+  const handleChangeInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
   };
-
-  const handleFetchPlayers = async (text: string) => {
-    if (text) {
-      const players = await fetchPlayers(text);
-      setSearchResults(players);
-    } else {
-      setSearchResults([]);
-    }
-  };
-
-  const makeApiRequestThrottled = useRef(throttle(handleFetchPlayers, 500));
-
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const text = e.target.value;
-    setInputText(text);
-    makeApiRequestThrottled.current(text);
-  };
-
-  // const throttledChangeInput = throttle((e) => {
-  //   handleChangeInput(e.target.value);
-  // }, 2000);
 
   const handleSelectPlayer = (player) => {
     setInputText("");

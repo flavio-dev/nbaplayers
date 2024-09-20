@@ -19,7 +19,11 @@ export const Results = () => {
         </>
       )}
       {players.map((player) => {
-        return <PlayerCard key={player.key} player={player} />;
+        return (
+          <div key={player.key}>
+            <PlayerCard player={player} />
+          </div>
+        );
       })}
     </>
   );
