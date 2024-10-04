@@ -1,17 +1,19 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import { useThrottle } from "@custom-react-hooks/use-throttle";
+// import { useThrottle } from "@custom-react-hooks/use-throttle";
+import useDebounce from "@/customeHooks/useDebounce";
 import styles from "./SearchBar.module.css";
 import { SearchBarContext } from "@/contexts/SearchBarContext";
-import { useThemeContext } from "@/contexts/ThemContext";
+// import { useThemeContext } from "@/contexts/ThemContext";
 
 export const SearchBar = () => {
   const { metricSystem, setMetricSystem, players, setPlayers } =
     useContext(SearchBarContext);
-  const { theme } = useThemeContext();
+  // const { theme } = useThemeContext();
   const [searchResults, setSearchResults] = useState([]);
   const [inputText, setInputText] = useState("");
-  const throttledText = useThrottle(inputText, 500);
+  // const throttledText = useThrottle(inputText, 500);
+  const debouncedText = useDebounce(inputText, 1000);
 
   useEffect(() => {
     const fetchPlayers = async (text: string) => {
@@ -34,10 +36,14 @@ export const SearchBar = () => {
       }
     };
 
-    if (throttledText) {
-      fetchPlayers(throttledText);
+    // if (throttledText) {
+    //   fetchPlayers(throttledText);
+    // }
+
+    if (debouncedText) {
+      fetchPlayers(debouncedText);
     }
-  }, [throttledText, setSearchResults]);
+  }, [debouncedText, setSearchResults]);
 
   const handleChangeInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
